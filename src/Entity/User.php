@@ -1,28 +1,25 @@
 <?php
-
+// src/Entity/User.php
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
+ * @ORM\Table(name="app_users")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     */
-    private $email;
-
-    /**
-     * @ORM\Column(type="string", length=60)
      */
     private $firstname;
 
@@ -34,20 +31,10 @@ class User
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $password;
+    private $avatar = "https://cms.qz.com/wp-content/uploads/2017/03/twitter_egg_blue.png?w=900&h=900&crop=1&strip=all&quality=75";
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $avatar;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $staff_bde;
-
-    /**
-     * @ORM\Column(type="string", length=2)
+     * @ORM\Column(type="string", length=50)
      */
     private $promotion;
 
@@ -56,21 +43,31 @@ class User
      */
     private $training;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $password;
 
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $email;
 
-        return $this;
+    /**
+     * @ORM\Column(type="string", length=25)
+     */
+    private $username;
+
+    public function __construct()
+    {
+        $this->isActive = true;
+        // may not be needed, see section on salt below
+        // $this->salt = md5(uniqid('', true));
     }
 
     public function getFirstname(): ?string
@@ -97,18 +94,6 @@ class User
         return $this;
     }
 
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
     public function getAvatar(): ?string
     {
         return $this->avatar;
@@ -117,18 +102,6 @@ class User
     public function setAvatar(string $avatar): self
     {
         $this->avatar = $avatar;
-
-        return $this;
-    }
-
-    public function getStaffBde(): ?bool
-    {
-        return $this->staff_bde;
-    }
-
-    public function setStaffBde(bool $staff_bde): self
-    {
-        $this->staff_bde = $staff_bde;
 
         return $this;
     }
@@ -156,4 +129,81 @@ class User
 
         return $this;
     }
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+            ) = unserialize($serialized, array('allowed_classes' => false));
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
 }
