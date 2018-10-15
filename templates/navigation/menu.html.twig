@@ -1,38 +1,50 @@
 <header>
 
     <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color: #ffffff;">
-        <a class="navbar-brand" href="#">Navbar</a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <div class="collapse navbar-collapse " id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-home"></i>
+                        Accueil
+                        <span class="sr-only">(current)</span>
+                    </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-
                 <li class="nav-item dropdown" >
-                    <a href="{{ path('homepage') }}" class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a  class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmXKtdARJyEgvHJjDSCvY-E73aQemd1QBE8TRgdqbFlhj81md3Mw" alt="..." class="rounded-circle profile" >
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-item">
+                            Pseudo
+                        </div>
+                        <hr/>
+                        <a class="dropdown-item" href="#">
+                            <i class="fas fa-user"></i>
+                            Profil
+                        </a>
+                        <hr/>
+                        <a class="dropdown-item" href="#">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Se déconnecter
+                        </a>
+
                     </div>
 
                 </li>
+
             </ul>
+            <div class="logoCenter">
+                <img src="{{ asset('img/favicon-32x32.png') }}"/>
+            </div>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="text" placeholder="Recherche..." aria-label="Search">
+                <button class="btn btn-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
             </form>
 
         </div>
