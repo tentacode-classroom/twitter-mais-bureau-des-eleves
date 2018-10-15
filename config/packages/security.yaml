@@ -16,6 +16,9 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            pattern:    ^/
+            http_basic: ~
+            provider: our_db_provider
             anonymous: true
 
             # activate different ways to authenticate
