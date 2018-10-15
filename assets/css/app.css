@@ -1,8 +1,14 @@
 body {
-    background-color: lightgray;
+    background-color: #e6ecf0;
     padding-top: 5rem;
 }
 
-.profile{
+
+.profile {
     width: 20%;
+}
+
+a{
+    color:#b1524c;
+
 }
