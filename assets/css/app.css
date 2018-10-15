@@ -1,4 +1,8 @@
 body {
-    background-color: lightgray;
+    background-color: #e6ecf0;
     padding-top: 5rem;
+}
+
+a{
+    color:#b1524c;
 }
