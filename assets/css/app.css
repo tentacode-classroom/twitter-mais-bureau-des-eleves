@@ -5,10 +5,40 @@ body {
 
 
 .profile {
-    width: 20%;
+    width: 12.5%;
 }
 
 a{
-    color:#b1524c;
+    color: #b1524c !important;
+}
 
+nav a{
+    color: #333333 !important;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #b1524c !important;
+    border-color: #b1524c !important;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #103546 !important;
+    border-color: #103546 !important;
+}
+
+.btn-success{
+    background-color: #103546 ;
+    border: #103546;
+}
+
+.btn-success:hover{
+    background-color: #103546 ;
+}
+
+.logoCenter{
+    position: fixed;
+    top: 10px;
+    left: 47%;
 }

@@ -17,16 +17,17 @@
 
 {% else %}
 
-    <h1>Inscription</h1>
-
-    {{ form_start(form) }}
-    {# {{ form_widget(form) }} équivaut à : #}
-    {{ form_row(form.email) }}
-    {{ form_row(form.password) }}
-    <hr />
-    {{ form_row(form.firstname) }}
-    {{ form_row(form.lastname) }}
-    {{ form_end(form) }}
+<div class="container d-flex">
+    <img src="" alt="" class="">
+    <div class="sidebar">
+        <a href="{{ path('registration') }}">
+            <button type="button" class="btn btn-primary">Se connecter</button>
+        </a>
+        <a href="{{ path('registration') }}">
+            <button type="button" class="btn btn-danger">S'inscrire</button>
+        </a>
+    </div>
+</div>
 
 {% endif %}
 {% endblock %}
