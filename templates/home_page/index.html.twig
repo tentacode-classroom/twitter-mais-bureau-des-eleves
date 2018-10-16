@@ -49,7 +49,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <textarea class="form-control" id="tweetInput" rows="3" placeholder="Quoi de neuf ?"></textarea>
+                        {{ form_start(form) }}
+                        {{ form_row(form.content) }}
+                        {{ form_end(form) }}
                     </div>
                 </div>
                 <div class="modal-footer">

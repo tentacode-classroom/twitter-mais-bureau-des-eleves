@@ -36,6 +36,13 @@ class Message
      */
     private $is_active;
 
+    public function __construct()
+    {
+        $this->dateTime = new \DateTime();
+        $this->is_active = true;
+        $this->is_reported = false;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
