@@ -4,14 +4,38 @@
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
 <div class="d-flex justify-content-between pl-5 pr-5">
-    <div class="shadow-sm p-3 mb-5 bg-white rounded w-25 p-3 m-2">
-        <h1>Sidebar left</h1>
+    <div class="shadow-sm p-3 mb-5 bg-white rounded w-25 m-2">
+        <div class="d-flex">
+            <div class="col-sm-4">
+                <a href="">
+                    <img src="{{ app.user.avatar }}" alt="{{ app.user.username }}" class="rounded-circle avatar-index" >
+                </a>
+            </div>
+            <div class="col-sm-8">
+                <h5 class="mb-0">{{ app.user.firstname }}</h5>
+                <span class="small" style="color: grey;">@{{ app.user.username }}</span>
+            </div>
+        </div>
+        <div class="d-flex mt-2">
+            <div class="col-sm-3">
+                <span class="">Tweets</span>
+                <span class="font-weight-bold" style="color: #b1524c;"> {{ app.user.tweet }}</span>
+            </div>
+            <div class="col-sm-5">
+                <span class="">Abonnements</span>
+                <span class="font-weight-bold" style="color: #b1524c;"> {{ app.user.tweet }}</span>
+            </div>
+            <div class="col-sm-3">
+                <span class="">Abonnés</span>
+                <span class="font-weight-bold" style="color: #b1524c;"> {{ app.user.tweet }}</span>
+            </div>
+        </div>
     </div>
     <div class="shadow-sm p-3 mb-5 bg-white rounded w-50 p-3 m-2">
-        <h1>content middle</h1>
+
     </div>
     <div class="shadow-sm p-3 mb-5 bg-white rounded w-25 p-3 m-2">
-        <h1>Sidebar Right</h1>
+        <h4>Suggestions</h4>
     </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -39,16 +63,16 @@
 
 {% else %}
 
-<div class="d-flex">
-    <div class="w-50 d-flex justify-content-center" style="height: 100vh; background: url('{{ asset('img/index.png') }}'); background-size: cover;'">
-        <ul>
-            <li><i class="fas fa-search"></i> Suivez vos passions.</li>
-            <li><i class="fas fa-users"></i> Découvrez ce dont les gens parlent autour de vous.</li>
-            <li><i class="fas fa-comment"></i> Rejoignez la conversation.</li>
+<div class="d-flex fixed-top">
+    <div class="w-50 d-flex text-left" style="height: 100vh; background: url('{{ asset('img/index.png') }}'); background-size: cover;'">
+        <ul class="m-auto text-white text-left m-5" style="font-size: x-large; list-style: none;">
+            <li class="mb-4"><i class="fas fa-search"></i> Suivez vos passions.</li>
+            <li class="mb-4"><i class="fas fa-users"></i> Découvrez ce dont les gens parlent autour de vous.</li>
+            <li class="mb-4"><i class="fas fa-comment"></i> Rejoignez la conversation.</li>
         </ul>
     </div>
-    <div class="w-50 d-flex flex-column">
-        <p>Bienvenue sur le Twitter privée du BDE Ynov Lyon.<br />
+    <div class="m-auto w-50 p-5">
+        <p>Découvrez ce qui se passe dans ynov en temps réel<br />
         Evènement du campus, activités et soirée, retrouver l'essentiel du bde autour du twitter du bde.</p>
         <a href="{{ path('login') }}"><button type="button" class="btn btn-primary">Se connecter</button></a>
         <a href="{{ path('registration') }}"><button type="button" class="btn btn-danger">S'inscrire</button></a>

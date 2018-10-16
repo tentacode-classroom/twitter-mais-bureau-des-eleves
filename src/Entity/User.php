@@ -63,6 +63,11 @@ class User implements UserInterface
      */
     private $username;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $tweet;
+
     public function __construct()
     {
         $this->isActive = true;
@@ -202,6 +207,18 @@ class User implements UserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    public function getTweet(): ?int
+    {
+        return $this->tweet;
+    }
+
+    public function setTweet(int $tweet): self
+    {
+        $this->tweet = $tweet;
 
         return $this;
     }
