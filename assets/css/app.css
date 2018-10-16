@@ -46,3 +46,7 @@ nav a{
 .tweet{
     margin-right: 10px;
 }
+
+#exampleModal{
+    z-index: 3000;
+}
