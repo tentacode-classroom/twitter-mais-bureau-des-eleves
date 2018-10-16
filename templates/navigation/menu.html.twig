@@ -1,3 +1,4 @@
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 <header>
 
     <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color: #ffffff;">
@@ -17,11 +18,11 @@
                 </li>
                 <li class="nav-item dropdown" >
                     <a  class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmXKtdARJyEgvHJjDSCvY-E73aQemd1QBE8TRgdqbFlhj81md3Mw" alt="..." class="rounded-circle profile" >
+                        <img src="{{ app.user.avatar }}" alt="avatar de profil" class="rounded-circle profile" >
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                         <div class="dropdown-item">
-                            Pseudo
+                            {{ app.user.username }}
                         </div>
                         <hr/>
                         <a class="dropdown-item" href="#">
@@ -29,7 +30,7 @@
                             Profil
                         </a>
                         <hr/>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ path('logout')}}">
                             <i class="fas fa-sign-out-alt"></i>
                             Se déconnecter
                         </a>
@@ -42,6 +43,11 @@
             <div class="logoCenter">
                 <img src="{{ asset('img/favicon-32x32.png') }}"/>
             </div>
+
+            <button type="button" class="btn btn-danger tweet" data-toggle="modal" data-target="#exampleModal">Tweeter</button>
+
+
+
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Recherche..." aria-label="Search">
                 <button class="btn btn-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
@@ -50,3 +56,4 @@
         </div>
     </nav>
 </header>
+{% endif %}
