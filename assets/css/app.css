@@ -5,7 +5,7 @@ body {
 
 
 .profile {
-    width: 12.5%;
+    width: 25px;
 }
 
 a{
@@ -41,4 +41,8 @@ nav a{
     position: fixed;
     top: 10px;
     left: 47%;
+}
+
+.tweet{
+    margin-right: 10px;
 }
