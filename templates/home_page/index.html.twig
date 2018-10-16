@@ -17,15 +17,19 @@
 
 {% else %}
 
-<div class="container d-flex">
-    <img src="" alt="" class="">
-    <div class="sidebar">
-        <a href="{{ path('registration') }}">
-            <button type="button" class="btn btn-primary">Se connecter</button>
-        </a>
-        <a href="{{ path('registration') }}">
-            <button type="button" class="btn btn-danger">S'inscrire</button>
-        </a>
+<div class="d-flex">
+    <div class="w-50 d-flex justify-content-center" style="height: 100vh; background: url('{{ asset('img/index.png') }}'); background-size: cover;'">
+        <ul>
+            <li><i class="fas fa-search"></i> Suivez vos passions.</li>
+            <li><i class="fas fa-users"></i> Découvrez ce dont les gens parlent autour de vous.</li>
+            <li><i class="fas fa-comment"></i> Rejoignez la conversation.</li>
+        </ul>
+    </div>
+    <div class="w-50 d-flex flex-column">
+        <p>Bienvenue sur le Twitter privée du BDE Ynov Lyon.<br />
+        Evènement du campus, activités et soirée, retrouver l'essentiel du bde autour du twitter du bde.</p>
+        <a href="{{ path('login') }}"><button type="button" class="btn btn-primary">Se connecter</button></a>
+        <a href="{{ path('registration') }}"><button type="button" class="btn btn-danger">S'inscrire</button></a>
     </div>
 </div>
 
