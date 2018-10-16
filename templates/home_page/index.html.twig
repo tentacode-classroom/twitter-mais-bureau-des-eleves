@@ -18,9 +18,9 @@
 {% else %}
 
 <div class="container d-flex">
-    <img src="" alt="" class="">
+    <img src="{{ asset('img/logo.png') }}" alt="Logo du BDE" class="justify-content-between" height="350" width="350">
     <div class="sidebar">
-        <a href="{{ path('registration') }}">
+        <a href="{{ path('login') }}">
             <button type="button" class="btn btn-primary">Se connecter</button>
         </a>
         <a href="{{ path('registration') }}">
