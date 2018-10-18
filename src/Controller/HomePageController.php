@@ -30,6 +30,7 @@ class HomePageController extends AbstractController
 
         return $this->render('home_page/index.html.twig', [
             'form' => $form->createView(),
+            'tweets' => $tweet,
         ]);
     }
 }

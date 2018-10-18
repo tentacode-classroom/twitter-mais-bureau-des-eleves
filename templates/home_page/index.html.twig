@@ -34,7 +34,7 @@
     <div class="shadow-sm p-3 mb-5 bg-white rounded w-50 p-3 m-2">
         {% for tweet in tweets %}
         <div>
-            {{ tweet.date_time }}
+            {{ tweet.datetime|date("m/d/Y") }}
         </div>
         {% endfor %}
     </div>
