@@ -1,8 +1,10 @@
+{% use "bootstrap_4_layout.html.twig" %}
+
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Écrire un nouveau tweet</h5>
+                <h5 class="modal-title" id="exampleModalLabel"> {{ app.user.username }} écrivez un nouveau message</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -10,15 +12,16 @@
             <div class="modal-body">
                 <div class="form-group">
                     {{ form_start(form) }}
-                    {{ form_row(form.content) }}
+                    {{ form_widget(form.content) }}
 
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">{{ form_row(form.submit) }}</button>
+                <button type="button" class="btn btn-primary">{{ form_widget(form.submit) }}</button>
                 {{ form_end(form) }}
             </div>
         </div>
     </div>
 </div>
+
