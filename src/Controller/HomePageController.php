@@ -21,6 +21,13 @@ class HomePageController extends AbstractController
             $entityManager->flush();
         };
 
+        $tweet = $this->getDoctrine()
+            ->getRepository(Message::class)
+            ->findBy([], ['dateTime' => 'DESC']);
+        if (!$tweet){
+            throw $this->createNotFoundException('There is no product in the database');
+        }
+
         return $this->render('home_page/index.html.twig', [
             'form' => $form->createView(),
         ]);
