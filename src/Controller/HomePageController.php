@@ -15,7 +15,7 @@ class HomePageController extends AbstractController
 
         $tweet = $this->getDoctrine()
             ->getRepository(Message::class)
-            ->findBy([], ['dateTime' => 'DESC']);
+            ->findBy([], ['dateTime' => 'ASC']);
 
         return $this->render('home_page/index.html.twig', [
 
