@@ -8,7 +8,7 @@ use App\Entity\User;
 class ProfileController extends AbstractController
 {
     /**
-     * @Route("/{userUsername}", name="user_details")
+     * @Route("/p/{userUsername}", name="user_details")
      */
     public function index(String $userUsername)
     {
