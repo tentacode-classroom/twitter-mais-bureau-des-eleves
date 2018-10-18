@@ -8,7 +8,7 @@ body {
     width: 25px;
 }
 
-a{
+a:hover{
     color: #b1524c !important;
 }
 
@@ -53,4 +53,8 @@ nav a{
 
 .avatar-index, .avatar-tweet{
     height: 50px;
+}
+
+.w-10{
+    width: 10%;
 }
