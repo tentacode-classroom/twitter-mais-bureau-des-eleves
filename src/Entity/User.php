@@ -66,14 +66,15 @@ class User implements UserInterface
     private $username;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="author")
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="user")
      */
-    private $messages;
+    private $tweet;
 
     public function __construct()
     {
         $this->isActive = true;
         $this->messages = new ArrayCollection();
+        $this->tweet = new ArrayCollection();
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
     }
@@ -217,28 +218,28 @@ class User implements UserInterface
     /**
      * @return Collection|Message[]
      */
-    public function getMessages(): Collection
+    public function getTweet(): Collection
     {
-        return $this->messages;
+        return $this->tweet;
     }
 
-    public function addMessage(Message $message): self
+    public function addTweet(Message $tweet): self
     {
-        if (!$this->messages->contains($message)) {
-            $this->messages[] = $message;
-            $message->setAuthor($this);
+        if (!$this->tweet->contains($tweet)) {
+            $this->tweet[] = $tweet;
+            $tweet->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeMessage(Message $message): self
+    public function removeTweet(Message $tweet): self
     {
-        if ($this->messages->contains($message)) {
-            $this->messages->removeElement($message);
+        if ($this->tweet->contains($tweet)) {
+            $this->tweet->removeElement($tweet);
             // set the owning side to null (unless already changed)
-            if ($message->getAuthor() === $this) {
-                $message->setAuthor(null);
+            if ($tweet->getUser() === $this) {
+                $tweet->setUser(null);
             }
         }
 

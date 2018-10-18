@@ -50,3 +50,7 @@ nav a{
 #exampleModal{
     z-index: 3000;
 }
+
+.avatar-index, .avatar-tweet{
+    height: 50px;
+}

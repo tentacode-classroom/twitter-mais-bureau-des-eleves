@@ -31,11 +31,24 @@
             </div>
         </div>
     </div>
-    <div class="shadow-sm p-3 mb-5 bg-white rounded w-50 p-3 m-2">
+    <div class="shadow-sm mb-5 bg-white rounded w-50 m-2">
         {% for tweet in tweets %}
         <div>
-            {{ tweet.datetime|date("m/d/Y") }}
+            <div class="d-flex pl-3 pr-3 pt-3">
+                <div class="col-md-1 mr-3">
+                    <img src="{{ tweet.user.avatar }}" alt="{{ tweet.user.username }}" class="rounded-circle avatar-tweet" >
+                </div>
+                <div class="col-md-11">
+                    {{ tweet.user.username }}
+                    {{ tweet.datetime|date("m/d/Y") }}
+                </div>
+            </div>
+            <hr class="d-flex justify-content-between" style="width: 95%">
+            <div class="pl-3 pr-3">
+                {{ tweet.content }}
+            </div>
         </div>
+        <hr>
         {% endfor %}
     </div>
     <div class="shadow-sm p-3 mb-5 bg-white rounded w-25 p-3 m-2">
