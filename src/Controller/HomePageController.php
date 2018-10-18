@@ -10,24 +10,15 @@ class HomePageController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function index(Request $request)
+    public function index()
     {
-        $message = new Message();
-        $message->setUser($this->getUser());
-        $form = $this->createForm(TweetType::class, $message);
-        $form->handleRequest($request);
-        $entityManager = $this->getDoctrine()->getManager();
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($message);
-            $entityManager->flush();
-        };
 
         $tweet = $this->getDoctrine()
             ->getRepository(Message::class)
             ->findBy([], ['dateTime' => 'ASC']);
 
         return $this->render('home_page/index.html.twig', [
-            'form' => $form->createView(),
+
             'tweets' => $tweet,
         ]);
     }
