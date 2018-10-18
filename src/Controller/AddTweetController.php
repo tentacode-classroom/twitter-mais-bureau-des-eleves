@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\TweetType;
@@ -15,12 +16,16 @@ class AddTweetController extends AbstractController
      */
     public function index(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
 
         $message = new Message();
         $message->setUser($this->getUser());
+        $user = $this->getUser();
         $form = $this->createForm(TweetType::class, $message);
         $form->handleRequest($request);
         $entityManager = $this->getDoctrine()->getManager();
+        $update_user = $em->getRepository(User::class)->find($user);
+        $update_user->increementTweet();
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($message);
             $entityManager->flush();

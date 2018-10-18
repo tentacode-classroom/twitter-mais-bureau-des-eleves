@@ -70,6 +70,11 @@ class User implements UserInterface
      */
     private $tweet;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $tweet_nb;
+
     public function __construct()
     {
         $this->isActive = true;
@@ -77,6 +82,7 @@ class User implements UserInterface
         $this->tweet = new ArrayCollection();
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
+        $this->tweet_nb = 0;
     }
 
     public function getFirstname(): ?string
@@ -246,4 +252,19 @@ class User implements UserInterface
         return $this;
     }
 
+    public function getTweetNb(): ?int
+    {
+        return $this->tweet_nb;
+    }
+
+    public function setTweetNb(int $tweet_nb): self
+    {
+        $this->tweet_nb = $tweet_nb;
+
+        return $this;
+    }
+
+    public function increementTweet() {
+        $this->tweet_nb++;
+    }
 }
