@@ -4,7 +4,7 @@
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
 <div class="d-flex justify-content-between pl-5 pr-5">
-    <div class="shadow-sm p-3 mb-5 bg-white rounded w-25 m-2">
+    <div class="shadow-sm p-3 mb-5 bg-white rounded w-25 m-2 hm-140">
         <div class="d-flex">
             <div class="col-sm-3">
                 <a href="">
@@ -33,23 +33,7 @@
     </div>
     <div class="shadow-sm mb-5 bg-white rounded w-50 m-2">
         {% for tweet in tweets %}
-        <div>
-            <div class="d-flex pl-3 pr-3 pt-3">
-                <div class="col-md-1 mr-3">
-                    <img src="{{ tweet.user.avatar }}" alt="{{ tweet.user.username }}" class="rounded-circle avatar-tweet" >
-                </div>
-                <div class="col-md-11">
-                    <span class="font-weight-bold"> {{ tweet.user.firstname }} {{ tweet.user.lastname }}</span> <span class="small" style="color: grey;">@{{ tweet.user.username }} {{ tweet.datetime|date("m/d/Y") }}</span>
-                        <br />
-                    {{ tweet.content }}
-                    <br />
-                    <div class="d-flex">
-                        <div class="w-10"><a href=""><i class="fas fa-retweet"></i></a></div> <div class="w-10"><a href=""><i class="far fa-heart"></i></a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr>
+        {{ include('tweet.html.twig') }}
         {% endfor %}
     </div>
     <div class="shadow-sm p-3 mb-5 bg-white rounded w-25 p-3 m-2">
@@ -82,22 +66,6 @@
 </div>
 
 {% else %}
-
-<div class="d-flex fixed-top">
-    <div class="w-50 d-flex text-left" style="height: 100vh; background: url('{{ asset('img/index.png') }}'); background-size: cover;'">
-        <ul class="m-auto text-white text-left m-5" style="font-size: x-large; list-style: none;">
-            <li class="mb-4"><i class="fas fa-search"></i> Suivez vos passions.</li>
-            <li class="mb-4"><i class="fas fa-users"></i> Découvrez ce dont les gens parlent autour de vous.</li>
-            <li class="mb-4"><i class="fas fa-comment"></i> Rejoignez la conversation.</li>
-        </ul>
-    </div>
-    <div class="m-auto w-50 p-5">
-        <p>Découvrez ce qui se passe dans ynov en temps réel<br />
-        Evènement du campus, activités et soirée, retrouver l'essentiel du bde autour du twitter du bde.</p>
-        <a href="{{ path('login') }}"><button type="button" class="btn btn-primary">Se connecter</button></a>
-        <a href="{{ path('registration') }}"><button type="button" class="btn btn-danger">S'inscrire</button></a>
-    </div>
-</div>
-
+{{ include('index.html.twig') }}
 {% endif %}
 {% endblock %}

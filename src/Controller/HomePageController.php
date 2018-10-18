@@ -13,6 +13,7 @@ class HomePageController extends AbstractController
     public function index(Request $request)
     {
         $message = new Message();
+        $message->setUser($this->getUser());
         $form = $this->createForm(TweetType::class, $message);
         $form->handleRequest($request);
         $entityManager = $this->getDoctrine()->getManager();
@@ -23,7 +24,7 @@ class HomePageController extends AbstractController
 
         $tweet = $this->getDoctrine()
             ->getRepository(Message::class)
-            ->findBy([], ['dateTime' => 'DESC']);
+            ->findBy([], ['dateTime' => 'ASC']);
 
         return $this->render('home_page/index.html.twig', [
             'form' => $form->createView(),
