@@ -8,6 +8,10 @@ body {
     width: 25px;
 }
 
+a{
+    color: #103546 !important;
+}
+
 a:hover, a.a-tweet:hover{
     color: #b1524c !important;
 }
@@ -58,6 +62,7 @@ nav a{
 
 .avatar-index, .avatar-tweet{
     height: 50px;
+    width: 50px;
 }
 
 .w-10{
@@ -75,6 +80,7 @@ nav a{
 .avatar-profile{
     display: block;
     height: 100px;
+    width: 100px;
     margin-top: -50px;
     margin-left: auto;
     margin-right: auto;
