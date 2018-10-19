@@ -17,7 +17,7 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown" >
-                    <a  class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="{{ app.user.avatar }}" alt="avatar de profil" class="rounded-circle profile" >
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
@@ -25,7 +25,9 @@
                             {{ app.user.username }}
                         </div>
                         <hr/>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ path('user_details', {
+                            'userUsername': app.user.username
+                        }) }}" >
                             <i class="fas fa-user"></i>
                             Profil
                         </a>
