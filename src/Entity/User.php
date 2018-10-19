@@ -86,6 +86,11 @@ class User implements UserInterface
     private $likes;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $like_nb;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Follow", mappedBy="followed")
      */
     private $follows;
@@ -364,5 +369,21 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+    public function getLikeNb(): ?int
+    {
+        return $this->like_nb;
+    }
+
+    public function setLikeNb(int $like_nb): self
+    {
+        $this->like_nb = $like_nb;
+
+        return $this;
+    }
+
+    public function increementLike() {
+        $this->like_nb++;
     }
 }
