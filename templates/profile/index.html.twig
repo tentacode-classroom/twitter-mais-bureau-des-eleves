@@ -4,11 +4,15 @@
 
 {% block body %}
 <div class="d-flex justify-content-between pl-5 pr-5">
-    <div class="shadow-sm p-3 mb-5 bg-white rounded w-25 m-2 hm-200 mt-4">
+    <div class="shadow-sm p-3 mb-5 bg-white rounded w-25 hm-270 m-2 mt-4">
         <img src="{{ user.avatar }}" alt="{{ user.username }}" class="rounded-circle avatar-profile">
         {{ user.firstname }} {{user.lastname }} {% if (user.bde) %}<i class="fas fa-check-circle" title="Membre du BDE" alt="Membre du BDE"></i>{% endif %}<br />
-        <small>@{{ user.username }}</small>
+        <small>@{{ user.username }}</small><br />
+        <hr>
+        Promo : {{ user.promotion }}<br />
+        Formation : {{ user.training }}
         <br />
+        Vote : <i class="fas fa-beer"></i> <i class="fas fa-beer"></i> <i class="fas fa-beer"></i> <i class="fas fa-beer"></i> <i class="fas fa-beer"></i>
         <br />
         <a href=""><button type="button" class="btn btn-info">Suivre</button></a>
     </div>
