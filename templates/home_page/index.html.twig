@@ -12,8 +12,8 @@
                 </a>
             </div>
             <div class="col-sm-9">
-                <h5 class="mb-0">{{ app.user.firstname }}</h5>
-                <span class="small" style="color: grey;">@{{ app.user.username }}</span>
+                <h5 class="mb-0">{{ app.user.firstname }} {{ app.user.lastname }} </h5>
+                <span class="small" style="color: grey;">@{{ app.user.username }} {% if (app.user.bde) %}<i class="fas fa-check-circle" title="Membre du BDE" alt="Membre du BDE"></i>{% endif %}</span>
             </div>
         </div>
         <div class="d-flex mt-2">
