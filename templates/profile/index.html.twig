@@ -4,28 +4,29 @@
 
 {% block body %}
 <div class="d-flex justify-content-between pl-5 pr-5">
-    <div class="shadow-sm p-3 mb-5 bg-white rounded w-25 m-2 hm-140">
-
-        <h4>{{ user.username }}</h4>
+    <div class="shadow-sm p-3 mb-5 bg-white rounded w-25 m-2 hm-140 mt-4">
+        <img src="{{ user.avatar }}" alt="{{ user.username }}" class="rounded-circle avatar-profile">
+        {{ user.firstname }} {{user.lastname }} {% if (user.bde) %}<i class="fas fa-check-circle" title="Membre du BDE" alt="Membre du BDE"></i>{% endif %}<br />
+        <small>@{{ user.username }}</small>
     </div>
     <div class="card w-50">
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item text-center">
-                    <a class="nav-link active" href="#"><span style="font-size: small">Tweet</span> <br />
+                    <a class="nav-link active" href="#"><small>Tweet</small> <br />
                         <span style="color: #b1524c; font-weight: bold">{{ user.tweetNb }}</span></a>
                 </li>
                 <li class="nav-item text-center">
-                    <a class="nav-link" href="#"><span style="font-size: small">Abonnement</span> <br />
-                        <span style="color: #b1524c; font-weight: bold">{{ user.tweetNb }}</span></a>
+                    <a class="nav-link" href="#"><small>Abonnement</small> <br />
+                        <span style="color: #b1524c; font-weight: bold">0</span></a>
                 </li>
                 <li class="nav-item text-center">
-                    <a class="nav-link" href="#"><span style="font-size: small">Abonnés</span> <br />
-                        <span style="color: #b1524c; font-weight: bold">{{ user.tweetNb }}</span></a>
+                    <a class="nav-link" href="#"><small>Abonnés</small> <br />
+                        <span style="color: #b1524c; font-weight: bold">0</span></a>
                 </li>
                 <li class="nav-item text-center">
-                    <a class="nav-link" href="#"><span style="font-size: small">J'aime</span> <br />
-                        <span style="color: #b1524c; font-weight: bold">{{ user.tweetNb }}</span></a>
+                    <a class="nav-link" href="#"><small>J'aime</small> <br />
+                        <span style="color: #b1524c; font-weight: bold">0</span></a>
                 </li>
             </ul>
         </div>

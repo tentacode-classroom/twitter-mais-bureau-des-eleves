@@ -75,6 +75,11 @@ class User implements UserInterface
      */
     private $tweet_nb;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $BDE;
+
     public function __construct()
     {
         $this->isActive = true;
@@ -83,6 +88,7 @@ class User implements UserInterface
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
         $this->tweet_nb = 0;
+        $this->BDE = 0;
     }
 
     public function getFirstname(): ?string
@@ -266,5 +272,17 @@ class User implements UserInterface
 
     public function increementTweet() {
         $this->tweet_nb++;
+    }
+
+    public function getBDE(): ?bool
+    {
+        return $this->BDE;
+    }
+
+    public function setBDE(bool $BDE): self
+    {
+        $this->BDE = $BDE;
+
+        return $this;
     }
 }

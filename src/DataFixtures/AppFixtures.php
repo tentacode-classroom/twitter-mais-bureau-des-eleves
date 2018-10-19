@@ -21,6 +21,7 @@ class AppFixtures extends Fixture
         $neerfix->setPromotion('B2');
         $neerfix->setTraining('Ingésup');
         $neerfix->setUsername('Neerfix');
+        $neerfix->setBDE("1");
 
         $manager->persist($neerfix);
 
