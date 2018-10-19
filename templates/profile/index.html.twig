@@ -10,7 +10,11 @@
         <small>@{{ user.username }}</small>
         <br />
         <br />
-        <a href=""><button type="button" class="btn btn-info">Suivre</button></a>
+        {% if not isFollowing %}
+        <a href="{{ path('follow', {'id' : user.id}) }}"><button type="button" class="btn btn-info">Suivre</button></a>
+        {% else %}
+        <a href=""><button type="button" class="btn btn-info">Ne plus suivre</button></a>
+        {% endif %}
     </div>
     <div class="card w-50">
         <div class="card-header">
@@ -21,11 +25,11 @@
                 </li>
                 <li class="nav-item text-center">
                     <a class="nav-link" href="#"><small>Abonnement</small> <br />
-                        <span style="color: #b1524c; font-weight: bold">0</span></a>
+                        <span style="color: #b1524c; font-weight: bold">{{ nb_follows }}</span></a>
                 </li>
                 <li class="nav-item text-center">
                     <a class="nav-link" href="#"><small>Abonnés</small> <br />
-                        <span style="color: #b1524c; font-weight: bold">0</span></a>
+                        <span style="color: #b1524c; font-weight: bold">{{ nb_followers }}</span></a>
                 </li>
                 <li class="nav-item text-center">
                     <a class="nav-link" href="#"><small>J'aime</small> <br />

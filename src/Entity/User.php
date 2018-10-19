@@ -80,6 +80,11 @@ class User implements UserInterface
      */
     private $BDE;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Follow", mappedBy="followed")
+     */
+    private $follows;
+
     public function __construct()
     {
         $this->isActive = true;
@@ -89,7 +94,14 @@ class User implements UserInterface
         // $this->salt = md5(uniqid('', true));
         $this->tweet_nb = 0;
         $this->BDE = 0;
+        $this->follows = new ArrayCollection();
     }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
 
     public function getFirstname(): ?string
     {
@@ -282,6 +294,37 @@ class User implements UserInterface
     public function setBDE(bool $BDE): self
     {
         $this->BDE = $BDE;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Follow[]
+     */
+    public function getFollows(): Collection
+    {
+        return $this->follows;
+    }
+
+    public function addFollow(Follow $follow): self
+    {
+        if (!$this->follows->contains($follow)) {
+            $this->follows[] = $follow;
+            $follow->setFollowed($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFollow(Follow $follow): self
+    {
+        if ($this->follows->contains($follow)) {
+            $this->follows->removeElement($follow);
+            // set the owning side to null (unless already changed)
+            if ($follow->getFollowed() === $this) {
+                $follow->setFollowed(null);
+            }
+        }
 
         return $this;
     }
