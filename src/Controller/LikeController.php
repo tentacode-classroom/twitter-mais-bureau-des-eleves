@@ -48,8 +48,8 @@ class LikeController extends AbstractController
         $queryBuilder->delete(Likes::class, 'l')
             ->andWhere('l.user = :user')
             ->setParameter(':user', $user)
-            ->andWhere('l.messageLiked = :messageLiked')
-            ->setParameter(':messageLiked', $tweetId);
+            ->andWhere('l.message = :message')
+            ->setParameter(':message', $tweetId);
         $query = $queryBuilder->getQuery();
         $query->execute();
 
