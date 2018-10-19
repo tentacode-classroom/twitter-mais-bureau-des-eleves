@@ -68,6 +68,10 @@ nav a{
     max-height: 140px;
 }
 
+.hm-200{
+    max-height: 200px;
+}
+
 .avatar-profile{
     display: block;
     height: 100px;

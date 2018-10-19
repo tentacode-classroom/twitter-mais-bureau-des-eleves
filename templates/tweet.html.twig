@@ -8,7 +8,7 @@
         <div class="col-md-11">
             <a href="{{ path('user_details', {
                         'userUsername': tweet.user.username
-                    }) }}" class="a-tweet"><span class="font-weight-bold"> {{ tweet.user.firstname }} {{ tweet.user.lastname }}</span></a> <span class="small" style="color: grey;">@{{ tweet.user.username }} {{ tweet.datetime|date("m/d/Y") }}</span>
+                    }) }}" class="a-tweet"><span class="font-weight-bold"> {{ tweet.user.firstname }} {{ tweet.user.lastname }}</span></a> <span class="small" style="color: grey;">@{{ tweet.user.username }} {% if (tweet.user.bde) %}<i class="fas fa-check-circle" title="Membre du BDE" alt="Membre du BDE"></i>{% endif %} {{ tweet.datetime|date("m/d/Y") }}</span>
             <br />
             {{ tweet.content }}
             <br />

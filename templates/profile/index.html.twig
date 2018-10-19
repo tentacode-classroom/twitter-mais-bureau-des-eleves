@@ -4,10 +4,13 @@
 
 {% block body %}
 <div class="d-flex justify-content-between pl-5 pr-5">
-    <div class="shadow-sm p-3 mb-5 bg-white rounded w-25 m-2 hm-140 mt-4">
+    <div class="shadow-sm p-3 mb-5 bg-white rounded w-25 m-2 hm-200 mt-4">
         <img src="{{ user.avatar }}" alt="{{ user.username }}" class="rounded-circle avatar-profile">
         {{ user.firstname }} {{user.lastname }} {% if (user.bde) %}<i class="fas fa-check-circle" title="Membre du BDE" alt="Membre du BDE"></i>{% endif %}<br />
         <small>@{{ user.username }}</small>
+        <br />
+        <br />
+        <a href=""><button type="button" class="btn btn-info">Suivre</button></a>
     </div>
     <div class="card w-50">
         <div class="card-header">
