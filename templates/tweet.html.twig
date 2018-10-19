@@ -13,9 +13,15 @@
             {{ tweet.content }}
             <br />
             <div class="d-flex">
-                <div class="w-10"><a href=""><i class="fas fa-retweet"></i></a></div> <div class="w-10"><a href="{{ path('like', {
+                <div class="w-10"><a href=""><i class="fas fa-retweet"></i></a></div>
+                {% if not likesCompare(app.user, tweet) %}
+                <div class="w-10"><a href="{{ path('like', {
                         'tweetId': tweet.id
-                    }) }}"><i class="far fa-heart"></i></a></div>
+                    }) }}"><i class="far fa-heart"></i> {{tweet.getLikes()|length}}</a></div>
+                    {% else %}
+                    <div class="w-10"><a href="{{ path('unlike_tweet', {'tweetId': tweet.id }) }}" class="tweet-footer-btn LIKE">
+                        <i class="fas fa-heart"></i> {{tweet.getLikes()|length}}</a></div>
+                        {% endif %}
             </div>
         </div>
     </div>

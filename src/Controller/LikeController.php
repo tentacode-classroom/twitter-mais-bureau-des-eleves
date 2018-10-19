@@ -36,7 +36,7 @@ class LikeController extends AbstractController
     }
 
     /**
-     * @Route("/unlike/{tweetId}", name="unlike_message")
+     * @Route("/unlike/{tweetId}", name="unlike_tweet")
      */
     public function unlikeMessage(Message $tweetId, Request $request)
     {
