@@ -13,7 +13,9 @@
             {{ tweet.content }}
             <br />
             <div class="d-flex">
-                <div class="w-10"><a href=""><i class="fas fa-retweet"></i></a></div> <div class="w-10"><a href=""><i class="far fa-heart"></i></a></div>
+                <div class="w-10"><a href=""><i class="fas fa-retweet"></i></a></div> <div class="w-10"><a href="{{ path('like', {
+                        'tweetId': tweet.id
+                    }) }}"><i class="far fa-heart"></i></a></div>
             </div>
         </div>
     </div>

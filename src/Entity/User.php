@@ -81,7 +81,7 @@ class User implements UserInterface
     private $BDE;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Like", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Likes", mappedBy="user")
      */
     private $likes;
 
@@ -103,6 +103,7 @@ class User implements UserInterface
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
         $this->tweet_nb = 0;
+        $this->like_nb = 0;
         $this->BDE = 0;
         $this->likes = new ArrayCollection();
         $this->follows = new ArrayCollection();
@@ -310,14 +311,14 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Like[]
+     * @return Collection|Likes[]
      */
     public function getLikes(): Collection
     {
         return $this->likes;
     }
 
-    public function addLike(Like $like): self
+    public function addLike(Likes $like): self
     {
         if (!$this->likes->contains($like)) {
             $this->likes[] = $like;
@@ -327,7 +328,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function removeLike(Like $like): self
+    public function removeLike(Likes $like): self
     {
         if ($this->likes->contains($like)) {
             $this->likes->removeElement($like);
