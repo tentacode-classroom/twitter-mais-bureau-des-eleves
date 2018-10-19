@@ -45,6 +45,13 @@ class LikeController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $queryBuilder = $entityManager->createQueryBuilder();
 
+        $update_user = $entityManager->getRepository(User::class)->find($user);
+        $update_user->decreementLike();
+
+        $entityManager->persist($update_user);
+        $entityManager->flush();
+
+
         $queryBuilder->delete(Likes::class, 'l')
             ->andWhere('l.user = :user')
             ->setParameter(':user', $user)

@@ -298,6 +298,10 @@ class User implements UserInterface
         $this->tweet_nb++;
     }
 
+    public function decreementTweet() {
+        $this->tweet_nb--;
+    }
+
     public function getBDE(): ?bool
     {
         return $this->BDE;
@@ -386,5 +390,8 @@ class User implements UserInterface
 
     public function increementLike() {
         $this->like_nb++;
+    }
+    public function decreementLike() {
+        $this->like_nb--;
     }
 }
