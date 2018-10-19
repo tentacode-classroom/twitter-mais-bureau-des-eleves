@@ -23,31 +23,48 @@
     <div class="card w-50">
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
-                <li class="nav-item text-center">
-                    <a class="nav-link active" href="#"><small>Tweet</small> <br />
-                        <span style="color: #b1524c; font-weight: bold">{{ user.tweetNb }}</span></a>
-                </li>
-                <li class="nav-item text-center">
-                    <a class="nav-link" href="#"><small>Abonnement</small> <br />
-                        <span style="color: #b1524c; font-weight: bold">{{ nb_follows }}</span></a>
-                </li>
-                <li class="nav-item text-center">
-                    <a class="nav-link" href="#"><small>Abonnés</small> <br />
-                        <span style="color: #b1524c; font-weight: bold">{{ nb_followers }}</span></a>
-                </li>
-                <li class="nav-item text-center">
-                    <a class="nav-link" href="#"><small>J'aime</small> <br />
-                        <span style="color: #b1524c; font-weight: bold">{{ user.likeNb }}</span></a>
-                </li>
+                <li class="nav-item text-center"><a class="nav-link active" data-toggle="tab" href="#tweet"><small>Tweet</small> <br />
+                    <span style="color: #b1524c; font-weight: bold">{{ user.tweetNb }}</span></a></li>
+                <li class="nav-item text-center"><a class="nav-link" data-toggle="tab" href="#abonnement"><small>Abonnement</small> <br />
+                    <span style="color: #b1524c; font-weight: bold">{{ nb_follows }}</span></a></li>
+                <li class="nav-item text-center"><a class="nav-link" data-toggle="tab" href="#abonnés"><small>Abonnés</small> <br />
+                    <span style="color: #b1524c; font-weight: bold">{{ nb_followers }}</span></a></li>
+                <li class="nav-item text-center"><a class="nav-link" data-toggle="tab" href="#likes"><small>J'aime</small> <br />
+                    <span style="color: #b1524c; font-weight: bold">{{ user.likeNb }}</span></a></li>
             </ul>
         </div>
+
+            <div class="tab-content">
+                <div id="tweet" class="tab-pane in active">
+                    <h3 class="p-3">Tweet</h3>
+                    {% for tweet in tweets %}
+                    {{ include('tweet.html.twig') }}
+                    {% endfor %}
+                </div>
+                <div id="abonnement" class="tab-pane fade">
+                    <h3 class="p-3">Abonnement</h3>
+                    {% for tweet in tweets %}
+                    {{ include('tweet.html.twig') }}
+                    {% endfor %}
+                </div>
+                <div id="abonnés" class="tab-pane fade">
+                    <h3 class="p-3">Abonnés</h3>
+                    {% for tweet in tweets %}
+                    {{ include('tweet.html.twig') }}
+                    {% endfor %}
+                </div>
+                <div id="likes" class="tab-pane fade">
+                    <h3 class="p-3">J'aime</h3>
+                    {% for tweet in tweets %}
+                    {{ include('tweet.html.twig') }}
+                    {% endfor %}
+                </div>
+            </div>
         {{ render(controller(
             'App\\Controller\\AddTweetController::show'
         )) }}
         <div class="card-body">
-            {% for tweet in tweets %}
-            {{ include('tweet.html.twig') }}
-            {% endfor %}
+
         </div>
     </div>
     <div class="shadow-sm p-3 mb-5 bg-white rounded w-25 p-3 m-2">

@@ -45,6 +45,10 @@ class ProfileController extends AbstractController
                 'dateTime' => 'DESC'
             ]);
 
+        $likes = $this->getDoctrine()
+            ->getRepository(Message::class)
+            ->findBy(['user' => $user],['dateTime' => 'DESC']);
+
         $Followers = $this->getDoctrine()
             ->getRepository(Follow::class)
             ->findBy(['followed' => $user]);
@@ -64,8 +68,8 @@ class ProfileController extends AbstractController
             'current_user' => $currentUser,
             'isFollowing' => $isFollowing,
             'nb_followers' => $nbFollowers,
-            'nb_follows' => $nbFollows
-
+            'nb_follows' => $nbFollows,
+            'likes' => $likes,
         ];
 
 

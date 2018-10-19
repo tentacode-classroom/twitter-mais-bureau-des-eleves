@@ -10,6 +10,7 @@ body {
 
 a{
     color: #103546 !important;
+    text-decoration: none !important;
 }
 
 a:hover, a.a-tweet:hover{
