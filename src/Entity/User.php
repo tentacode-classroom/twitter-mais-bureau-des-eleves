@@ -81,6 +81,11 @@ class User implements UserInterface
     private $BDE;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Like", mappedBy="user")
+     */
+    private $likes;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Follow", mappedBy="followed")
      */
     private $follows;
@@ -94,6 +99,7 @@ class User implements UserInterface
         // $this->salt = md5(uniqid('', true));
         $this->tweet_nb = 0;
         $this->BDE = 0;
+        $this->likes = new ArrayCollection();
         $this->follows = new ArrayCollection();
     }
 
@@ -294,6 +300,37 @@ class User implements UserInterface
     public function setBDE(bool $BDE): self
     {
         $this->BDE = $BDE;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Like[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Like $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Like $like): self
+    {
+        if ($this->likes->contains($like)) {
+            $this->likes->removeElement($like);
+            // set the owning side to null (unless already changed)
+            if ($like->getUser() === $this) {
+                $like->setUser(null);
+            }
+        }
 
         return $this;
     }
