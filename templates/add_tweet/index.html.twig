@@ -1,4 +1,4 @@
-{% use "bootstrap_4_layout.html.twig" %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -17,8 +17,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">{{ form_widget(form.submit) }}</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                {{ form_widget(form.submit) }}
                 {{ form_end(form) }}
             </div>
         </div>
