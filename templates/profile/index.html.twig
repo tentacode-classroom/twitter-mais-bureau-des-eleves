@@ -5,19 +5,24 @@
 {% block body %}
 <div class="d-flex justify-content-between pl-5 pr-5">
     <div class="shadow-sm p-3 mb-5 bg-white rounded w-25 m-2 hm-140">
+
         <h4>{{ user.username }}</h4>
     </div>
-    <div class="card text-center">
+    <div class="card w-50">
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Tweet</a>
+                    <a class="nav-link active" href="#">Tweet <br />
+                        {{ user.tweetNb }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="#">Abonnement</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
+                    <a class="nav-link" href="#">Abonnés</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">J'aime</a>
                 </li>
             </ul>
         </div>
@@ -25,9 +30,9 @@
             'App\\Controller\\AddTweetController::show'
         )) }}
         <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            {% for tweet in tweets %}
+            {{ include('tweet.html.twig') }}
+            {% endfor %}
         </div>
     </div>
     <div class="shadow-sm p-3 mb-5 bg-white rounded w-25 p-3 m-2">

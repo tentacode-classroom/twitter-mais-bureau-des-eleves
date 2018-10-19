@@ -4,6 +4,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UserRepository;
 use App\Entity\User;
+use App\Entity\Message;
 
 class ProfileController extends AbstractController
 {
@@ -14,7 +15,12 @@ class ProfileController extends AbstractController
     {
         $user = $this->getDoctrine()->getRepository(User::class)->findOneByUsername($userUsername);
 
+        $tweet = $this->getDoctrine()
+            ->getRepository(Message::class)
+            ->findBy(['user' => $user], ['dateTime' => 'DESC']);
+
         $data = [
+            'tweets' => $tweet,
             'slug' => $userUsername,
             'user' => $user,
         ];
