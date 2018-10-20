@@ -95,6 +95,11 @@ class User implements UserInterface
      */
     private $follows;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $roles;
+
     public function __construct()
     {
         $this->isActive = true;
@@ -107,6 +112,8 @@ class User implements UserInterface
         $this->BDE = 0;
         $this->likes = new ArrayCollection();
         $this->follows = new ArrayCollection();
+        $this->roles = "ROLE_USER";
+
     }
 
     public function getId()
@@ -393,5 +400,12 @@ class User implements UserInterface
     }
     public function decreementLike() {
         $this->like_nb--;
+    }
+
+    public function setRoles(string $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
     }
 }
