@@ -1,10 +1,9 @@
 <?php
-
-// src/Command/CreateUserCommand.php
 namespace App\Command;
-
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Process\Process;
@@ -125,7 +124,7 @@ class CommandInstall extends Command
         $io->newLine(4);
         $io->section('Run the server');
         $process = new Process('php bin/console server:start');
-        // $process->setTimeout(300);
+        $process->setTimeout(25);
         $process->mustRun(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
         });
