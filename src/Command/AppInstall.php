@@ -7,18 +7,16 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Process\Process;
-
 class CommandInstall extends Command
 {
     protected static $defaultName = 'app:install';
-
     protected function configure()
     {
         $this
             ->setName('app:install')
-            ->setDescription('Command to install the project');
+            ->setDescription('Command to install the project')
+        ;
     }
-
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
@@ -26,10 +24,41 @@ class CommandInstall extends Command
         $io->progressStart(11);
         $io->newLine(4);
         $io->section('Installation of composer dependencies');
-        $process = new Process('composer install');
+        $process = new Process('composer i');
         $process->setTimeout(300);
         $process->mustRun(function ($type, $buffer) use ($io, $output) {
-            $output->writeln('> ' . $buffer);
+            $output->writeln('> '.$buffer);
+        });
+        $io->newLine(20);
+        $io->title('Installation of the project');
+        $io->progressAdvance();
+        $io->newLine(4);
+        $io->section('Installation of the doctrine dependencies');
+        $process = new Process('composer require --dev doctrine/doctrine-fixtures-bundle');
+        $process->setTimeout(300);
+        $process->mustRun(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
+        });
+
+        $io->newLine(20);
+        $io->title('Installation of the project');
+        $io->progressAdvance();
+        $io->newLine(4);
+        $io->section('Installation of the twig dependencies');
+        $process = new Process('composer require twig/extensions');
+        $process->setTimeout(300);
+        $process->mustRun(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
+        });
+        $io->newLine(20);
+        $io->title('Installation of the project');
+        $io->progressAdvance();
+        $io->newLine(4);
+        $io->section('Installation of the messenger dependencies');
+        $process = new Process('composer require symfony/messenger');
+        $process->setTimeout(300);
+        $process->mustRun(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
         });
         $io->newLine(20);
         $io->title('Installation of the project');
@@ -42,10 +71,10 @@ class CommandInstall extends Command
             }
             return $dbname;
         });
-        $process = new Process('replace "db_user" "' . $dbname . '" -- .env');
+        $process = new Process('replace "db_user" "'.$dbname.'" -- .env');
         $process->setTimeout(300);
         $process->mustRun(function ($type, $buffer) use ($io, $output) {
-            $output->writeln('> ' . $buffer);
+            $output->writeln('> '.$buffer);
         });
         $dbpassword = $io->askhidden('What is your database password ?', function ($dbpassword) {
             if (empty($dbpassword)) {
@@ -53,10 +82,10 @@ class CommandInstall extends Command
             }
             return $dbpassword;
         });
-        $process = new Process('replace "db_password" "' . $dbpassword . '" -- .env');
+        $process = new Process('replace "db_password" "'.$dbpassword.'" -- .env');
         $process->setTimeout(300);
         $process->mustRun(function ($type, $buffer) use ($io, $output) {
-            $output->writeln('> ' . $buffer);
+            $output->writeln('> '.$buffer);
         });
         $io->newLine(20);
         $io->title('Installation of the project');
@@ -66,7 +95,7 @@ class CommandInstall extends Command
         $process = new Process('mysql.server start');
         $process->setTimeout(300);
         $process->mustRun(function ($type, $buffer) use ($io, $output) {
-            $output->writeln('> ' . $buffer);
+            $output->writeln('> '.$buffer);
         });
         $io->newLine(20);
         $io->title('Installation of the project');
@@ -76,7 +105,7 @@ class CommandInstall extends Command
         $process = new Process('bin/console doctrine:database:create --if-not-exists');
         $process->setTimeout(300);
         $process->mustRun(function ($type, $buffer) use ($io, $output) {
-            $output->writeln('> ' . $buffer);
+            $output->writeln('> '.$buffer);
         });
         $io->newLine(20);
         $io->title('Installation of the project');
@@ -86,7 +115,7 @@ class CommandInstall extends Command
         $process = new Process('bin/console app:mig');
         $process->setTimeout(300);
         $process->mustRun(function ($type, $buffer) use ($io, $output) {
-            $output->writeln('> ' . $buffer);
+            $output->writeln('> '.$buffer);
         });
         $io->newLine(20);
         $io->title('Installation of the project');
@@ -96,7 +125,7 @@ class CommandInstall extends Command
         $process = new Process('php bin/console server:start');
         // $process->setTimeout(300);
         $process->mustRun(function ($type, $buffer) use ($io, $output) {
-            $output->writeln('> ' . $buffer);
+            $output->writeln('> '.$buffer);
         });
         $io->newLine(20);
         $io->title('Installation of the project');
