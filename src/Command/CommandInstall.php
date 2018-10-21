@@ -112,7 +112,7 @@ class CommandInstall extends Command
         $io->title('Installation of the project');
         $io->progressAdvance();
         $io->newLine(4);
-        $io->section('Init DataBase');
+        $io->section('Create Migration');
         $process = new Process('bin/console make:migration');
         $process->setTimeout(300);
         $process->mustRun(function ($type, $buffer) use ($io, $output) {
@@ -122,7 +122,7 @@ class CommandInstall extends Command
         $io->title('Installation of the project');
         $io->progressAdvance();
         $io->newLine(4);
-        $io->section('Init DataBase');
+        $io->section('Migration');
         $process = new Process('bin/console doctrine:migration:migrate');
         $process->setTimeout(300);
         $process->mustRun(function ($type, $buffer) use ($io, $output) {
@@ -132,7 +132,7 @@ class CommandInstall extends Command
         $io->title('Installation of the project');
         $io->progressAdvance();
         $io->newLine(4);
-        $io->section('Init DataBase');
+        $io->section('Load Fixtures');
         $process = new Process('bin/console doctrine:fixtures:load');
         $process->setTimeout(300);
         $process->mustRun(function ($type, $buffer) use ($io, $output) {
@@ -143,7 +143,17 @@ class CommandInstall extends Command
         $io->progressAdvance();
         $io->newLine(4);
         $io->section('Run the server');
-        $process = new Process('php bin/console server:start');
+        $process = new Process('bin/console server:start');
+        $process->setTimeout(25);
+        $process->mustRun(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
+        });
+        $io->newLine(20);
+        $io->title('Installation of the project');
+        $io->progressAdvance();
+        $io->newLine(4);
+        $io->section('Run the server');
+        $process = new Process('yarn install');
         $process->setTimeout(25);
         $process->mustRun(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
