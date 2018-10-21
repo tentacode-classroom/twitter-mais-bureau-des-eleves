@@ -61,6 +61,17 @@ class AppFixtures extends Fixture
 
         $manager->persist($El_monkey);
 
+        $B2oba = New User();
+        $B2oba->setEmail('Anthony.Dubuis@ynov.com');
+        $B2oba->setFirstname('Anthony');
+        $B2oba->setLastname('Dubuis');
+        $B2oba->setPassword('$2y$12$pd5eJIjiFOeDmH1Zaxbl6OVxUBq0MuvYWd9YcH8tiNO0vjTNRsMUa');
+        $B2oba->setPromotion('B2');
+        $B2oba->setTraining('Ingésup');
+        $B2oba->setUsername('B2oba');
+
+        $manager->persist($B2oba);
+
         $manager->flush();
 
     }

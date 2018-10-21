@@ -142,8 +142,18 @@ class CommandInstall extends Command
         $io->title('Installation of the project');
         $io->progressAdvance();
         $io->newLine(4);
-        $io->section('Run the server');
-        $process = new Process('bin/console server:start');
+        $io->section('Yarn Installation');
+        $process = new Process('yarn install');
+        $process->setTimeout(25);
+        $process->mustRun(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
+        });
+        $io->newLine(20);
+        $io->title('Installation of the project');
+        $io->progressAdvance();
+        $io->newLine(4);
+        $io->section('Execute yarn encore dev');
+        $process = new Process('yarn encore dev');
         $process->setTimeout(25);
         $process->mustRun(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
@@ -153,8 +163,8 @@ class CommandInstall extends Command
         $io->progressAdvance();
         $io->newLine(4);
         $io->section('Run the server');
-        $process = new Process('yarn install');
-        $process->setTimeout(25);
+        $process = new Process('bin/console server:start');
+        $process->setTimeout(5);
         $process->mustRun(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
         });
