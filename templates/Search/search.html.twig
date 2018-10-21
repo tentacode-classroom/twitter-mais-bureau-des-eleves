@@ -1,27 +1,41 @@
 {% extends 'base.html.twig' %}
 
 
-
 {% block body %}
 
-    <h1> Search </h1>
 
-    <div >
-        {{ form_start(formSearch) }}
-        {{ form_widget(formSearch) }}
-        {{ form_end(formSearch) }}
-    </div>
-    <div>
-        {% if users is defined %}
-            {% for user in  users %}
 
-                <div><a href="{{ '/user/'~user.id }}">
-                        {{ user.username}}</a>
+    {% for one_user in user_find %}
+
+
+    <div class="d-flex  pl-5 pr-5">
+        <div class="col-sm"></div>
+        <div class="shadow-sm p-3 mb-5 bg-white rounded w-25 m-2 hm-140">
+            <div class="d-flex">
+
+                <div class="col-sm-3">
+                    <a href="">
+                        <img src="{{ one_user.avatar }}" alt="{{ one_user.username }}" class="rounded-circle avatar-index">
+                    </a>
                 </div>
+                <div class="col-sm-9">
+                    <a href="{{ path('user_details', {
+                        'userUsername': one_user.username
+                    }) }}" class="mb-0"><span class="font-weight-bold"> {{ one_user.firstname }} {{ one_user.lastname }}</span></a> <span class="small" style="color: grey;">@{{ one_user.username }} {% if (one_user.bde) %}<i class="fas fa-check-circle" title="Membre du BDE" alt="Membre du BDE"></i>{% endif %}</span>
 
 
-            {% endfor %}
-        {% endif %}
+                    <span class="small" style="color: grey;">@{{ one_user.username }} {% if (one_user.bde) %}<i class="fas fa-check-circle" title="Membre du BDE" alt="Membre du BDE"></i>{% endif %}</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm"></div>
     </div>
+
+
+
+    {% endfor %}
+
+
 
 {% endblock %}

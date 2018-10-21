@@ -47,24 +47,16 @@ class SearchController extends AbstractController
     /**
      * @Route("/search", name="search")
      */
-    public function index(Request $request)
+    public function index()
     {
-        //$users = new User();
-        $formSearch = $this->createForm(User::class);
-        $formSearch->handleRequest($request);
-        if ($formSearch->isSubmitted() && $formSearch->isValid()) {
-            $userSearch = $formSearch->getData();
-            $users = $this->getDoctrine()
-                ->getRepository(User::class)
-                ->findUsersByUsername($userSearch['username']);
-            return $this->render('Search/search.html.twig', array(
-                'users' => $users,
-                'formSearch' => $formSearch->createView(),
-            ));
-        } else {
-            return $this->render('Search/search.html.twig', array(
-                'formSearch' => $formSearch->createView(),
-            ));
-        }
+        // if (isset($_POST['motEntree']))
+        $userFind = $this->getDoctrine()->getRepository(User::class)->findBy([
+             'username' => $_POST["recherche"]
+        ]);
+
+
+        return $this->render('Search/search.html.twig', [
+            "user_find" => $userFind
+        ]);
     }
 }
