@@ -113,7 +113,27 @@ class CommandInstall extends Command
         $io->progressAdvance();
         $io->newLine(4);
         $io->section('Init DataBase');
-        $process = new Process('bin/console app:mig');
+        $process = new Process('bin/console make:migration');
+        $process->setTimeout(300);
+        $process->mustRun(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
+        });
+        $io->newLine(20);
+        $io->title('Installation of the project');
+        $io->progressAdvance();
+        $io->newLine(4);
+        $io->section('Init DataBase');
+        $process = new Process('bin/console doctrine:migration:migrate');
+        $process->setTimeout(300);
+        $process->mustRun(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
+        });
+        $io->newLine(20);
+        $io->title('Installation of the project');
+        $io->progressAdvance();
+        $io->newLine(4);
+        $io->section('Init DataBase');
+        $process = new Process('bin/console doctrine:fixtures:load');
         $process->setTimeout(300);
         $process->mustRun(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
