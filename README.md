@@ -1,9 +1,9 @@
-[![Build Status]https://travis-ci.org/tentacode-classroom/twitter-mais-bureau-des-eleves.svg?branch=master)](https://travis-ci.org/tentacode-classroom/twitter-mais-bureau-des-eleves)
+[![Build Status](https://travis-ci.org/tentacode-classroom/twitter-mais-bureau-des-eleves.svg?branch=master)](https://travis-ci.org/tentacode-classroom/twitter-mais-bureau-des-eleves)
 # twitter-mais-bureau-des-eleves (BDE)
 Ce projet est réalisé par Nicolas Notararigo, Alexandre Gelin, Jade Rosa dans le cadre du projet symfony de Gabriel Pillet.
 
 
-##Installation du projet
+## Installation du projet
 Pour l'installation du projet, vous devez faire plusieurs étapes:
 
 - Clonez et executez la ligne de commande suivante dans le terminal (ouvert dans le dossier):
