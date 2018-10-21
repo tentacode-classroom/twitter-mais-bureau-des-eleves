@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
+
 
 {% block body %}
 <div class="d-flex justify-content-between pl-5 pr-5">
@@ -17,7 +17,7 @@
         {% if not isFollowing %}
         <a href="{{ path('follow', {'id' : user.id}) }}"><button type="button" class="btn btn-info">Suivre</button></a>
         {% else %}
-        <a href=""><button type="button" class="btn btn-info">Ne plus suivre</button></a>
+        <a href="{{ path('unfollow', {'id' : user.id}) }}"><button type="button" class="btn btn-info">Ne plus suivre</button></a>
         {% endif %}
     </div>
     <div class="card w-50">

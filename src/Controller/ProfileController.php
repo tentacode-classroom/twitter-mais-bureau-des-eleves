@@ -81,16 +81,35 @@ class ProfileController extends AbstractController
      * @Route("/follow/{id}", name="follow")
      */
     public function follow(int $id) {
-        $subscribeTo = $this->getDoctrine()->getRepository(User::class)
+        $followIt = $this->getDoctrine()->getRepository(User::class)
             ->findOneBy([
                 'id' => $id
             ]);
         $follow = new Follow();
         $follow->setFollower($this->getUser());
-        $follow->setFollowed($subscribeTo);
+        $follow->setFollowed($followIt);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($follow);
         $entityManager->flush();
-        return $this->redirectToRoute('profile', ['username' => $subscribeTo->getUsername()]);
+        return $this->redirectToRoute('user_details', ['userUsername' => $followIt->getUsername()]);
+    }
+
+    /**
+     * @Route("/unfollow/{id}", name="unfollow")
+     */
+    public function unsubscribe(int $id) {
+        $unfollowIt = $this->getDoctrine()->getRepository(User::class)
+            ->findOneBy([
+                'id' => $id
+            ]);
+        $friendsRowToDelete = $this->getDoctrine()->getRepository(Follow::class)
+            ->findOneBy([
+                'follower' => $this->getUser(),
+                'followed' => $unfollowIt
+            ]);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($friendsRowToDelete);
+        $entityManager->flush();
+        return $this->redirectToRoute('user_details', ['userUsername' => $unfollowIt->getUsername()]);
     }
 }
