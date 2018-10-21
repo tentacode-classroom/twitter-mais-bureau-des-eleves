@@ -14,10 +14,12 @@
         <br />
         Vote : <i class="fas fa-beer"></i> <i class="fas fa-beer"></i> <i class="fas fa-beer"></i> <i class="fas fa-beer"></i> <i class="fas fa-beer"></i>
         <br />
-        {% if not isFollowing %}
+        {% if user != current_user %}
+            {% if not isFollowing %}
         <a href="{{ path('follow', {'id' : user.id}) }}"><button type="button" class="btn btn-info">Suivre</button></a>
-        {% else %}
+            {% else %}
         <a href="{{ path('unfollow', {'id' : user.id}) }}"><button type="button" class="btn btn-info">Ne plus suivre</button></a>
+            {% endif %}
         {% endif %}
     </div>
     <div class="card w-50">

@@ -57,7 +57,7 @@ class ProfileController extends AbstractController
         $Follows = $this->getDoctrine()
             ->getRepository(Follow::class)
             ->findBy([
-                'followed' => $user
+                'follower' => $user
             ]);
         $nbFollows = count($Follows);
 
